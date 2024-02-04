@@ -4,6 +4,9 @@ The container checks daily at 02:00 if api.ipify.org returns a valid public IP. 
 
 **Note:** This project is mostly to play around with docker images on the DSM, a simple cron job would work just as well.
 
+## Build status
+[![Docker Image CI](https://github.com/ChrisMKV/fritzboxmonitor/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ChrisMKV/fritzboxmonitor/actions/workflows/docker-image.yml)
+
 ## How to build the image
 **To do:** Try to set up automated build locally on the syno.
 
