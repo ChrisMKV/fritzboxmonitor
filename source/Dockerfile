@@ -1,10 +1,13 @@
 # Dockerfile to create image with cron services
 FROM alpine:latest
 
+# Link repository to package
+LABEL org.opencontainers.image.source https://github.com/ChrisMKV/fritzboxmonitor
+
 # Set environment variables
 ENV FRITZBOX_IP=192.168.0.1
-ENV FRITZBOX_USER=FritzUser
-ENV FRITZBOX_PASSWORD=FritzPass
+ENV FRITZBOX_USER=FritzUserPlaceholder
+ENV FRITZBOX_PASSWORD=FritzPassPlaceholder
 
 # Add bind-tools (dig) and curl
 RUN apk update \
