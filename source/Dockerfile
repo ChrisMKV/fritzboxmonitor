@@ -3,13 +3,14 @@ FROM alpine:latest
 
 # Link repository to package
 LABEL org.opencontainers.image.source https://github.com/ChrisMKV/fritzboxmonitor
+LABEL org.opencontainers.image.description For private use only.
 
 # Set environment variables
 ENV FRITZBOX_IP=192.168.0.1
 ENV FRITZBOX_USER=FritzUserPlaceholder
 ENV FRITZBOX_PASSWORD=FritzPassPlaceholder
 
-# Add bind-tools (dig) and curl
+# Add curl
 RUN apk update \
 	&& apk add curl
 

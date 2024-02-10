@@ -1,10 +1,10 @@
 services:
   fritzboxmonitor:
-    image: chrismkv/fritzboxmonitor:latest
+    image: ghcr.io/chrismkv/fritzboxmonitor:latest
     container_name: fritzboxmonitor
     environment:
       - FRITZBOX_IP=192.168.0.1
-      - FRITZBOX_USER=Username
-      - FRITZBOX_PASSWORD=Password
+      - FRITZBOX_USER=FritzUserPlaceholder
+      - FRITZBOX_PASSWORD=FritzPassPlaceholder
     network_mode: synobridge
     restart: unless-stopped

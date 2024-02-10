@@ -11,8 +11,17 @@ if [[ $WebRequest =~ $IpRegex ]]; then
 else
 	echo "Received invalid IP '$WebRequest', FritzBox may have lost internet!"
 	echo "Rebooting FritzBox '$FRITZBOX_IP' with user '$FRITZBOX_USER'."
-	location="/upnp/control/deviceconfig"
-	uri="urn:dslforum-org:service:DeviceConfig:1"
-	action='Reboot'
-	curl -sS -k -m 5 --anyauth -u "$FRITZBOX_USER:$FRITZBOX_PASSWORD" http://$FRITZBOX_IP:49000$location -H 'Content-Type: text/xml; charset="utf-8"' -H "SoapAction:$uri#$action" -d "<?xml version='1.0' encoding='utf-8'?><s:Envelope s:encodingStyle='http://schemas.xmlsoap.org/soap/encoding/' xmlns:s='http://schemas.xmlsoap.org/soap/envelope/'><s:Body><u:$action xmlns:u='$uri'></u:$action></s:Body></s:Envelope>"
+
+	#Submit reboot to Fritzbox API
+ 	curl http://$FRITZBOX_IP:49000/upnp/control/deviceconfig \
+ 	  --silent \
+ 	  --show-error \
+ 	  --max-time 5 \
+ 	  --anyauth \
+ 	  --insecure \
+ 	  --user "$FRITZBOX_USER:$FRITZBOX_PASSWORD" \
+ 	  --header 'Content-Type: text/xml; charset="utf-8"' \
+ 	  --header "SoapAction:urn:dslforum-org:service:DeviceConfig:1#Reboot" \
+ 	  --data "<?xml version='1.0' encoding='utf-8'?><s:Envelope s:encodingStyle='http://schemas.xmlsoap.org/soap/encoding/' xmlns:s='http://schemas.xmlsoap.org/soap/envelope/'><s:Body><u:'Reboot' xmlns:u='urn:dslforum-org:service:DeviceConfig:1'></u:'Reboot'></s:Body></s:Envelope>"
+
 fi
