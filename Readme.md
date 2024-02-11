@@ -22,7 +22,6 @@ docker build . -t chrismkv/fritzboxmonitor
 The image *fritzboxmonitor* will be created.
 
 ### Automatic build & publish
-(In progress)
 
 On the Syno, register ghcr.io as repository (Only needed once, can't use the GUI in Container Manager):
 ````
@@ -30,17 +29,8 @@ export CR_PAT=(MyPAT)
 echo $CR_PAT | docker login ghcr.io -u ChrisMKV --password-stdin
 `````
 
-Next, tag the image for upload to ghcr.io. If it was build manually before, it'll appear twice with the different tags.
-````
-docker tag chrismkv/fritzboxmonitor ghcr.io/chrismkv/fritzboxmonitor:latest
-`````
-
-Push the image to ghcr.io:
-````
-docker push ghcr.io/chrismkv/fritzboxmonitor:latest
-`````
-
-The package now appears on: https://github.com/ChrisMKV?tab=packages
+Image is now automatically built and published to ghcr.io with Github Action.
+The package appears on: https://github.com/ChrisMKV?tab=packages
 
 By adding ````LABEL org.opencontainers.image.source https://github.com/ChrisMKV/fritzboxmonitor```` into the Dockerfile the package is automatically linked to the repo.
 
